@@ -4,7 +4,7 @@ import com.keijumt.pokedex.api.json.BaseStatJson
 import com.keijumt.pokedex.api.json.PokemonDetailJson
 import com.keijumt.pokedex.api.json.PokemonJson
 import com.keijumt.pokedex.api.json.PokemonTypeJson
-import com.keijumt.pokedex.pokedex.domain.model.BaseStat
+import com.keijumt.pokedex.pokedex.domain.model.BaseStats
 import com.keijumt.pokedex.pokedex.domain.model.Pokemon
 import com.keijumt.pokedex.pokedex.domain.model.PokemonId
 import com.keijumt.pokedex.pokedex.domain.model.PokemonType
@@ -21,7 +21,7 @@ fun PokemonDetailJson.toDomainModel() = Pokemon(
         weight = weight,
         height = height,
         types = types.map { it.type.toDomainModel() },
-        baseStats = stats.map { it.toDomainModel() }
+        baseStats = stats.toDomainModel()
     )
 )
 
@@ -29,14 +29,17 @@ fun PokemonTypeJson.toDomainModel(): PokemonType {
     return PokemonType.valueOf(name.toUpperCase())
 }
 
-fun BaseStatJson.toDomainModel(): BaseStat {
-    return when (stat.name) {
-        "hp" -> BaseStat.HP(stat.name, baseStat)
-        "attack" -> BaseStat.ATTACK(stat.name, baseStat)
-        "defense" -> BaseStat.DEFENSE(stat.name, baseStat)
-        "special-attack" -> BaseStat.SPECIAL_ATTACK(stat.name, baseStat)
-        "special-defense" -> BaseStat.SPECIAL_DEFENCE(stat.name, baseStat)
-        "speed" -> BaseStat.SPEED(stat.name, baseStat)
-        else -> throw IllegalArgumentException("Unsupported stat: ${stat.name}")
-    }
-}
+fun List<BaseStatJson>.toDomainModel() = BaseStats(
+    hp = find { it.stat.name == "hp" }?.baseStat
+        ?: throw IllegalArgumentException("Unsupported stat hp"),
+    attack = find { it.stat.name == "attack" }?.baseStat
+        ?: throw IllegalArgumentException("Unsupported stat attack"),
+    defence = find { it.stat.name == "defense" }?.baseStat
+        ?: throw IllegalArgumentException("Unsupported stat defense"),
+    specialAttack = find { it.stat.name == "special-attack" }?.baseStat
+        ?: throw IllegalArgumentException("Unsupported stat special-attack"),
+    specialDefence = find { it.stat.name == "special-defense" }?.baseStat
+        ?: throw IllegalArgumentException("Unsupported stat special-defense"),
+    speed = find { it.stat.name == "speed" }?.baseStat
+        ?: throw IllegalArgumentException("Unsupported stat speed")
+)

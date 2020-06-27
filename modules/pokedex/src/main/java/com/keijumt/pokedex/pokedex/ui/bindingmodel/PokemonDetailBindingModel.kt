@@ -7,7 +7,7 @@ data class PokemonDetailBindingModel(
     val weight: Int,
     val height: Int,
     val types: List<PokemonTypeBindingModel>,
-    val baseStats: List<BaseStatBindingModel>
+    val baseStats: BaseStatsBindingModel
 )
 
 enum class PokemonTypeBindingModel {
@@ -33,12 +33,11 @@ enum class PokemonTypeBindingModel {
     SHADOW;
 }
 
-sealed class BaseStatBindingModel {
-    data class HP(val name: String, val value: Int) : BaseStatBindingModel()
-    data class ATTACK(val name: String, val value: Int) : BaseStatBindingModel()
-    data class DEFENSE(val name: String, val value: Int) : BaseStatBindingModel()
-    data class SPECIAL_ATTACK(val name: String, val value: Int) : BaseStatBindingModel()
-    data class SPECIAL_DEFENCE(val name: String, val value: Int) : BaseStatBindingModel()
-    data class SPEED(val name: String, val value: Int) : BaseStatBindingModel()
-}
-
+data class BaseStatsBindingModel(
+    val hp: Int,
+    val attack: Int,
+    val defence: Int,
+    val specialAttack: Int,
+    val specialDefence: Int,
+    val speed: Int
+)

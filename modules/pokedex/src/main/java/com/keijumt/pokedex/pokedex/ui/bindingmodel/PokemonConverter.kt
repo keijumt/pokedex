@@ -1,6 +1,6 @@
 package com.keijumt.pokedex.pokedex.ui.bindingmodel
 
-import com.keijumt.pokedex.pokedex.domain.model.BaseStat
+import com.keijumt.pokedex.pokedex.domain.model.BaseStats
 import com.keijumt.pokedex.pokedex.domain.model.Pokemon
 import com.keijumt.pokedex.pokedex.domain.model.PokemonType
 
@@ -21,7 +21,7 @@ internal fun Pokemon.toDetailBindingModel(): PokemonDetailBindingModel? {
         weight = detail.weight,
         height = detail.height,
         types = detail.types.map { it.toBindingModel() },
-        baseStats = detail.baseStats.map { it.toBindingModel() }
+        baseStats = detail.baseStats.toBindingModel()
     )
 }
 
@@ -50,13 +50,6 @@ internal fun PokemonType.toBindingModel(): PokemonTypeBindingModel {
     }
 }
 
-internal fun BaseStat.toBindingModel(): BaseStatBindingModel {
-    return when (this) {
-        is BaseStat.HP -> BaseStatBindingModel.HP(name, value)
-        is BaseStat.ATTACK -> BaseStatBindingModel.ATTACK(name, value)
-        is BaseStat.DEFENSE -> BaseStatBindingModel.DEFENSE(name, value)
-        is BaseStat.SPECIAL_ATTACK -> BaseStatBindingModel.SPECIAL_ATTACK(name, value)
-        is BaseStat.SPECIAL_DEFENCE -> BaseStatBindingModel.SPECIAL_DEFENCE(name, value)
-        is BaseStat.SPEED -> BaseStatBindingModel.SPEED(name, value)
-    }
-}
+internal fun BaseStats.toBindingModel() = BaseStatsBindingModel(
+    hp, attack, defence, specialAttack, specialDefence, speed
+)

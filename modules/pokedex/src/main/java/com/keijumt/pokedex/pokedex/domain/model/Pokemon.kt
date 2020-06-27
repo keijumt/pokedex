@@ -9,7 +9,7 @@ class Pokemon(
         val height: Int,
         val weight: Int,
         val types: List<PokemonType>,
-        val baseStats: List<BaseStat>
+        val baseStats: BaseStats
     )
 
     val imageUrl = "https://pokeres.bastionbot.org/images/pokemon/${id.value}.png"
