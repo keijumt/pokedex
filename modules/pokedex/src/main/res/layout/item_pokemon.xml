@@ -8,6 +8,10 @@
         <variable
             name="pokemon"
             type="com.keijumt.pokedex.pokedex.ui.bindingmodel.PokemonBindingModel" />
+
+        <variable
+            name="listener"
+            type="com.keijumt.pokedex.pokedex.ui.pokemons.PokemonAdapterListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -18,6 +22,7 @@
         android:clickable="true"
         android:clipChildren="false"
         android:focusable="true"
+        android:onClick="@{() -> listener.onPokemonClick(pokemon.name)}"
         app:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

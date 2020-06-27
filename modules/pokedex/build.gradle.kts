@@ -5,7 +5,17 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
-android.buildFeatures.dataBinding = true
+android {
+    buildFeatures.dataBinding = true
+
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
+    }
+}
 
 dependencies {
     implementation(project(Module.api))
@@ -31,6 +41,9 @@ dependencies {
     kapt(Dep.DaggerHilt.androidxCompiler)
     implementation(Dep.DaggerHilt.common)
     implementation(Dep.DaggerHilt.viewmodel)
+
+    compileOnly(Dep.Dagger.assistedInjectAnnotations)
+    kapt(Dep.Dagger.assistedInjectProcessor)
 
     implementation(Dep.Glide.core)
     kapt(Dep.Glide.compiler)

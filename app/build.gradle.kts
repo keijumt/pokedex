@@ -41,6 +41,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures.dataBinding = true
+
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
+    }
 }
 
 tasks {
@@ -68,11 +78,18 @@ dependencies {
     implementation(Dep.AndroidX.livedataKtx)
     implementation(Dep.AndroidX.viewmodelKtx)
 
+    implementation(Dep.Navigation.runtimeKtx)
+    implementation(Dep.Navigation.fragmentKtx)
+    implementation(Dep.Navigation.uiKtx)
+
     implementation(Dep.DaggerHilt.core)
     kapt(Dep.DaggerHilt.compiler)
     kapt(Dep.DaggerHilt.androidxCompiler)
     implementation(Dep.DaggerHilt.common)
     implementation(Dep.DaggerHilt.viewmodel)
+
+    compileOnly(Dep.Dagger.assistedInjectAnnotations)
+    kapt(Dep.Dagger.assistedInjectProcessor)
 
     implementation(Dep.material)
 

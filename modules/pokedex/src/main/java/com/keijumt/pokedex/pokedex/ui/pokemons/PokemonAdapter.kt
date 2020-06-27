@@ -13,7 +13,7 @@ import com.keijumt.pokedex.pokedex.databinding.ItemLoadingBinding
 import com.keijumt.pokedex.pokedex.databinding.ItemPokemonBinding
 import com.keijumt.pokedex.pokedex.ui.bindingmodel.PokemonBindingModel
 
-class PokemonAdapter :
+class PokemonAdapter(private val listener: PokemonAdapterListener) :
     PagingDataAdapter<PokemonBindingModel, PokemonAdapter.PokemonViewHolder>(PokemonDiffItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
@@ -28,14 +28,15 @@ class PokemonAdapter :
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(it)
+            holder.bind(it, listener)
         }
     }
 
     class PokemonViewHolder(val binding: ItemPokemonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(pokemonBindingModel: PokemonBindingModel) {
+        fun bind(pokemonBindingModel: PokemonBindingModel, listener: PokemonAdapterListener) {
             binding.pokemon = pokemonBindingModel
+            binding.listener = listener
             binding.executePendingBindings()
         }
     }

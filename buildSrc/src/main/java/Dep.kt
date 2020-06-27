@@ -36,10 +36,16 @@ object Dep {
         val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
     }
 
+    object Dagger {
+        val assistedInjectAnnotations =
+            "com.squareup.inject:assisted-inject-annotations-dagger2:0.5.2"
+        val assistedInjectProcessor = "com.squareup.inject:assisted-inject-processor-dagger2:0.5.2"
+    }
+
     object Navigation {
         val runtimeKtx = "androidx.navigation:navigation-runtime-ktx:2.3.0-rc01"
         val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:2.3.0-rc01"
-        val uiKtx = "androidx.navigation:navigation-fragment-ktx:2.3.0-rc01"
+        val uiKtx = "androidx.navigation:navigation-ui-ktx:2.3.0-rc01"
     }
 
     object Retrofit {

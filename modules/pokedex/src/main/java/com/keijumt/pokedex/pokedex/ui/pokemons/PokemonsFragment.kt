@@ -5,6 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.keijumt.pokedex.pokedex.R
 import com.keijumt.pokedex.pokedex.databinding.FragmentPokemonsBinding
@@ -14,12 +17,17 @@ import kotlinx.coroutines.flow.collectLatest
 @AndroidEntryPoint
 class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
 
+    private val navController: NavController by lazy {
+        findNavController()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentPokemonsBinding.bind(view)
+        val pokemonsViewModel: PokemonsViewModel by viewModels()
 
-        val adapter = PokemonAdapter()
+        val adapter = PokemonAdapter(pokemonsViewModel)
         binding.pokemonRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2).apply {
             spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
@@ -33,11 +41,15 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
             val mergeAdapter = adapter.withLoadStateFooter(LoadingStateAdapter())
             binding.pokemonRecyclerView.adapter = mergeAdapter
 
-            val pokemonsViewModel: PokemonsViewModel by viewModels()
             lifecycleScope.launchWhenCreated {
                 pokemonsViewModel.pokemons.collectLatest {
                     adapter.submitData(it)
                 }
+            }
+
+            pokemonsViewModel.navigateToPokemon.observe(viewLifecycleOwner) { pokemonMame ->
+                val directions = PokemonsFragmentDirections.actionPokemonsToPokemon(pokemonMame)
+                navController.navigate(directions)
             }
         }
     }

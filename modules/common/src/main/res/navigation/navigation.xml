@@ -9,5 +9,22 @@
         android:id="@+id/pokemons"
         android:name="com.keijumt.pokedex.pokedex.ui.pokemons.PokemonsFragment"
         android:label="pokemons"
-        tools:layout="@layout/fragment_pokemons" />
+        tools:layout="@layout/fragment_pokemons">
+        <action
+            android:id="@+id/action_pokemons_to_pokemon"
+            app:destination="@id/pokemon"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pokemon"
+        android:name="com.keijumt.pokedex.pokedex.ui.pokemon.PokemonFragment"
+        android:label="pokemons"
+        tools:layout="@layout/fragment_pokemon">
+        <argument
+            android:name="pokemonId"
+            app:argType="string" />
+    </fragment>
 </navigation>
