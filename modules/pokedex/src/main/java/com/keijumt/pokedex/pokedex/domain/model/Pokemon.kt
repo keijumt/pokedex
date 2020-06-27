@@ -2,6 +2,7 @@ package com.keijumt.pokedex.pokedex.domain.model
 
 class Pokemon(
     val id: PokemonId,
+    val number: Int,
     val name: String,
     val detail: Detail? = null
 ) {

@@ -12,6 +12,7 @@ internal class PokemonRepositoryImpl @Inject constructor(
 ) : PokemonRepository {
     override suspend fun findAll(page: Int, per: Int): List<Pokemon> {
         return pokedexApi.pokemons(page, per).results.map { it.toDomainModel() }
+            .filter { it.number < 10000 }
     }
 
     override suspend fun findById(id: PokemonId): Pokemon {

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/pokemons"
         android:name="com.keijumt.pokedex.pokedex.ui.pokemons.PokemonsFragment"
-        android:label="pokemons"
+        android:label="Pokedex"
         tools:layout="@layout/fragment_pokemons">
         <action
             android:id="@+id/action_pokemons_to_pokemon"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/pokemon"
         android:name="com.keijumt.pokedex.pokedex.ui.pokemon.PokemonFragment"
-        android:label="pokemons"
+        android:label=""
         tools:layout="@layout/fragment_pokemon">
         <argument
             android:name="pokemonId"

@@ -9,13 +9,18 @@ import com.keijumt.pokedex.pokedex.domain.model.Pokemon
 import com.keijumt.pokedex.pokedex.domain.model.PokemonId
 import com.keijumt.pokedex.pokedex.domain.model.PokemonType
 
-fun PokemonJson.toDomainModel(): Pokemon = Pokemon(
-    id = PokemonId(url.split("/".toRegex()).let { it[it.lastIndex - 1] }),
-    name = name
-)
+fun PokemonJson.toDomainModel(): Pokemon {
+    val number = url.split("/".toRegex()).let { it[it.lastIndex - 1] }
+    return Pokemon(
+        id = PokemonId(number),
+        number = number.toInt(),
+        name = name
+    )
+}
 
 fun PokemonDetailJson.toDomainModel() = Pokemon(
     id = PokemonId(id.toString()),
+    number = id,
     name = name,
     detail = Pokemon.Detail(
         weight = weight,

@@ -7,6 +7,7 @@ import com.keijumt.pokedex.pokedex.domain.model.PokemonType
 internal fun Pokemon.toBindingModel(): PokemonBindingModel {
     return PokemonBindingModel(
         id = id.value,
+        number = number,
         name = name,
         imageUrl = imageUrl
     )
@@ -16,6 +17,7 @@ internal fun Pokemon.toDetailBindingModel(): PokemonDetailBindingModel? {
     val detail = detail ?: return null
     return PokemonDetailBindingModel(
         id = id.value,
+        number = number,
         name = name,
         imageUrl = imageUrl,
         weight = detail.weight,
