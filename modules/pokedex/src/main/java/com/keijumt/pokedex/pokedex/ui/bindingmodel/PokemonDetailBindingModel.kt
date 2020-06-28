@@ -9,36 +9,10 @@ data class PokemonDetailBindingModel(
     val height: Int,
     val types: List<PokemonTypeBindingModel>,
     val baseStats: BaseStatsBindingModel
-)
+) {
+    val capitalizedName: String = name.capitalize()
 
-enum class PokemonTypeBindingModel {
-    NORMAL,
-    FIGHTING,
-    FLYING,
-    POISON,
-    GROUND,
-    ROCK,
-    BUG,
-    GHOST,
-    STEEL,
-    FIRE,
-    WATER,
-    GRASS,
-    ELECTRIC,
-    PSYCHIC,
-    ICE,
-    DRAGON,
-    DARK,
-    FAIRY,
-    UNKNOWN,
-    SHADOW;
+    val firstType: PokemonTypeBindingModel = types[0]
+    val secondType: PokemonTypeBindingModel? = types.getOrNull(1)
 }
 
-data class BaseStatsBindingModel(
-    val hp: Int,
-    val attack: Int,
-    val defence: Int,
-    val specialAttack: Int,
-    val specialDefence: Int,
-    val speed: Int
-)

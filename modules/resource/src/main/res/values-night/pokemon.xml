@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_normal">#C6C6A7</color>
+    <color name="color_fighting">#D67873</color>
+    <color name="color_flying">#C6B7F5</color>
+    <color name="color_poison">#C183C1</color>
+    <color name="color_ground">#EBD69D</color>
+    <color name="color_rock">#D1C17D</color>
+    <color name="color_bug">#C6D16E</color>
+    <color name="color_ghost">#A292BC</color>
+    <color name="color_steel">#B8B8D0</color>
+    <color name="color_fire">#F5AC78</color>
+    <color name="color_water">#9DB7F5</color>
+    <color name="color_grass">#A7DB8D</color>
+    <color name="color_electric">#FAE078</color>
+    <color name="color_psychic">#FA92B2</color>
+    <color name="color_ice">#BCE6E6</color>
+    <color name="color_dragon">#A27DFA</color>
+    <color name="color_dark">#A29288</color>
+    <color name="color_fairy">#F4BDC9</color>
+    <color name="color_unknown">#68A090</color>
+    <color name="color_shadow">#767775</color>
+
+    <color name="color_on_normal">#000000</color>
+    <color name="color_on_fighting">#000000</color>
+    <color name="color_on_flying">#000000</color>
+    <color name="color_on_poison">#000000</color>
+    <color name="color_on_ground">#000000</color>
+    <color name="color_on_rock">#000000</color>
+    <color name="color_on_bug">#000000</color>
+    <color name="color_on_ghost">#000000</color>
+    <color name="color_on_steel">#000000</color>
+    <color name="color_on_fire">#000000</color>
+    <color name="color_on_water">#000000</color>
+    <color name="color_on_grass">#000000</color>
+    <color name="color_on_electric">#000000</color>
+    <color name="color_on_psychic">#000000</color>
+    <color name="color_on_ice">#000000</color>
+    <color name="color_on_dragon">#000000</color>
+    <color name="color_on_dark">#000000</color>
+    <color name="color_on_fairy">#000000</color>
+    <color name="color_on_unknown">#000000</color>
+    <color name="color_on_shadow">#ffffff</color>
+</resources>

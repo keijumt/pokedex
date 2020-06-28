@@ -12,10 +12,7 @@
         tools:layout="@layout/fragment_pokemons">
         <action
             android:id="@+id/action_pokemons_to_pokemon"
-            app:destination="@id/pokemon"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in" />
+            app:destination="@id/pokemon" />
     </fragment>
 
     <fragment

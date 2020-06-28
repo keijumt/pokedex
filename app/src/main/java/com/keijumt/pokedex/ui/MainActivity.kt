@@ -30,6 +30,16 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val config = PageConfiguration.getConfiguration(destination.id)
+
+            if (config.hideToolbar) {
+                supportActionBar?.hide()
+            } else {
+                supportActionBar?.show()
+            }
+        }
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()

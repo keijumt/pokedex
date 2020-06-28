@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:background="?selectableItemBackground"
+        app:cardBackgroundColor="?attr/colorSurface"
         android:clickable="true"
         android:clipChildren="false"
         android:focusable="true"

@@ -8,9 +8,13 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/red_700</item>
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@android:color/black</item>
         <item name="colorSecondaryVariant">@color/teal_400</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@android:color/black</item>
 
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@android:color/black</item>
         <item name="android:statusBarColor">@color/immersive_sys_ui</item>
 
         <item name="emphasisHighAlpha">0.87</item>

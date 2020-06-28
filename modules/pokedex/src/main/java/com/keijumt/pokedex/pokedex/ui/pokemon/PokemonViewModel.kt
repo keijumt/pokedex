@@ -1,9 +1,7 @@
 package com.keijumt.pokedex.pokedex.ui.pokemon
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.keijumt.pokedex.common.bindingadapter.LoadState
 import com.keijumt.pokedex.pokedex.domain.model.PokemonId
 import com.keijumt.pokedex.pokedex.domain.repository.PokemonRepository
 import com.keijumt.pokedex.pokedex.ui.bindingmodel.PokemonDetailBindingModel
@@ -21,11 +19,18 @@ class PokemonViewModel @AssistedInject constructor(
         fun create(pokemonId: PokemonId): PokemonViewModel
     }
 
-    val pokemon: LiveData<PokemonDetailBindingModel> =
+    val pokemon: LiveData<LoadState<PokemonDetailBindingModel>> =
         liveData(context = viewModelScope.coroutineContext) {
-            pokemonRepository.findById(pokemonId).toDetailBindingModel()?.let {
-                emit(it)
+            emit(LoadState.Loading)
+            try {
+                pokemonRepository.findById(pokemonId).toDetailBindingModel()?.let {
+                    emit(LoadState.Loaded(it))
+                }
+            } catch (e: Exception) {
+                emit(LoadState.Error<PokemonDetailBindingModel>(e))
             }
         }
+
+    val loading: LiveData<Boolean> = pokemon.map { it is LoadState.Loading }
 }
 
