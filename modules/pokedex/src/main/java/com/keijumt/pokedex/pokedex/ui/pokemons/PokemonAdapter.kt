@@ -37,6 +37,7 @@ class PokemonAdapter(private val listener: PokemonAdapterListener) :
         fun bind(pokemonBindingModel: PokemonBindingModel, listener: PokemonAdapterListener) {
             binding.pokemon = pokemonBindingModel
             binding.listener = listener
+            binding.position = layoutPosition
             binding.executePendingBindings()
         }
     }

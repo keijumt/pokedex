@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,9 +51,13 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
                 }
             }
 
-            pokemonsViewModel.navigateToPokemon.observe(viewLifecycleOwner) { pokemonId ->
+            pokemonsViewModel.navigateToPokemon.observe(viewLifecycleOwner) { (position, pokemonId) ->
+                val pokemonCard = (binding.pokemonRecyclerView.findViewHolderForAdapterPosition(position) as? PokemonAdapter.PokemonViewHolder)?.binding?.pokemonCard ?: return@observe
+
+                pokemonCard.transitionName = getString(R.string.pokemon_card_transition_name, pokemonId)
+                val extras = FragmentNavigatorExtras(pokemonCard to pokemonCard.transitionName)
                 val directions = PokemonsFragmentDirections.actionPokemonsToPokemon(pokemonId)
-                navController.navigate(directions)
+                navController.navigate(directions, extras)
             }
         }
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.transition.MaterialContainerTransform
 import com.keijumt.pokedex.common.bindingadapter.LoadState
 import com.keijumt.pokedex.pokedex.R
 import com.keijumt.pokedex.pokedex.databinding.FragmentPokemonBinding
@@ -39,6 +40,8 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
             lifecycleOwner = viewLifecycleOwner
             viewModel = pokemonViewModel
         }
+
+        sharedElementEnterTransition = MaterialContainerTransform()
 
         binding.toolbar.setNavigationOnClickListener {
             navController.popBackStack()

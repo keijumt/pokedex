@@ -24,10 +24,10 @@ class PokemonsViewModel @ViewModelInject constructor(
         .map { it.map { pokemon -> pokemon.toBindingModel() } }
         .cachedIn(viewModelScope)
 
-    private val _navigateToPokemon = SingleEventLiveData<String>()
-    val navigateToPokemon: LiveData<String> = _navigateToPokemon
+    private val _navigateToPokemon = SingleEventLiveData<Pair<Int, String>>()
+    val navigateToPokemon: LiveData<Pair<Int, String>> = _navigateToPokemon
 
-    override fun onPokemonClick(pokemonId: String) {
-        _navigateToPokemon.value = pokemonId
+    override fun onPokemonClick(position: Int, pokemonId: String) {
+        _navigateToPokemon.value = position to pokemonId
     }
 }
