@@ -21,6 +21,7 @@ object Dep {
     object AndroidX {
         val appCompat = "androidx.appcompat:appcompat:1.3.0-alpha01"
         val constraint = "androidx.constraintlayout:constraintlayout:2.0.0-beta7"
+        val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha03"
 
         val coreKtx = "androidx.core:core-ktx:1.5.0-alpha01"
         val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha06"

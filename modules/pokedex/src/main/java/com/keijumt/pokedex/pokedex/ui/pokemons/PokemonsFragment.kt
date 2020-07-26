@@ -9,6 +9,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.keijumt.pokedex.pokedex.R
 import com.keijumt.pokedex.pokedex.databinding.FragmentPokemonsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +28,9 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
         val binding = FragmentPokemonsBinding.bind(view)
         val pokemonsViewModel: PokemonsViewModel by viewModels()
 
-        val adapter = PokemonAdapter(pokemonsViewModel)
+        val adapter = PokemonAdapter(pokemonsViewModel).apply {
+            stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        }
         binding.pokemonRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2).apply {
             spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {

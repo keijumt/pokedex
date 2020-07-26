@@ -73,6 +73,7 @@ dependencies {
 
     implementation(Dep.AndroidX.appCompat)
     implementation(Dep.AndroidX.constraint)
+    implementation(Dep.AndroidX.recyclerview)
     implementation(Dep.AndroidX.coreKtx)
     implementation(Dep.AndroidX.fragmentKtx)
     implementation(Dep.AndroidX.livedataKtx)
