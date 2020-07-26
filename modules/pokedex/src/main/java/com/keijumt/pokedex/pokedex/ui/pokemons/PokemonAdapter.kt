@@ -47,14 +47,17 @@ class PokemonAdapter(private val listener: PokemonAdapterListener) :
     }
 }
 
-class LoadingStateAdapter : LoadStateAdapter<LoadStateViewHolder>() {
+class LoadingStateAdapter(
+    private val listener: LoadingStateAdapterListener
+) : LoadStateAdapter<LoadStateViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
         return LoadStateViewHolder(
             ItemLoadingBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            listener
         )
     }
 
@@ -64,10 +67,14 @@ class LoadingStateAdapter : LoadStateAdapter<LoadStateViewHolder>() {
 }
 
 class LoadStateViewHolder(
-    val binding: ItemLoadingBinding
+    val binding: ItemLoadingBinding,
+    val listener: LoadingStateAdapterListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(loadState: LoadState) {
         binding.progress.isVisible = loadState is LoadState.Loading
+        binding.retryButton.isVisible = loadState is LoadState.Error
+        binding.listener = listener
+        binding.executePendingBindings()
     }
 }
 

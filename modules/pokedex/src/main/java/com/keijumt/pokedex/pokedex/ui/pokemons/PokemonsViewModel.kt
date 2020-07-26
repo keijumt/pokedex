@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 
 class PokemonsViewModel @ViewModelInject constructor(
     pokemonRepository: PokemonRepository
-) : ViewModel(), PokemonAdapterListener {
+) : ViewModel(), PokemonAdapterListener, LoadingStateAdapterListener {
     val pokemons = Pager(
         PagingConfig(pageSize = 30, initialLoadSize = 50)
     ) {
@@ -27,7 +27,14 @@ class PokemonsViewModel @ViewModelInject constructor(
     private val _navigateToPokemon = SingleEventLiveData<Pair<Int, String>>()
     val navigateToPokemon: LiveData<Pair<Int, String>> = _navigateToPokemon
 
+    private val _retry = SingleEventLiveData<Unit>()
+     val retry: LiveData<Unit> = _retry
+
     override fun onPokemonClick(position: Int, pokemonId: String) {
         _navigateToPokemon.value = position to pokemonId
+    }
+
+    override fun onRetryClick() {
+        _retry.value = Unit
     }
 }
