@@ -27,7 +27,7 @@ class PokemonViewModel @AssistedInject constructor(
                     emit(LoadState.Loaded(it))
                 }
             } catch (e: Exception) {
-                emit(LoadState.Error<PokemonDetailBindingModel>(e))
+                emit(LoadState.Error(e))
             }
         }
 

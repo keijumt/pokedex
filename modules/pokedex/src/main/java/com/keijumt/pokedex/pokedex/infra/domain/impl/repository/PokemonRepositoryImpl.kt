@@ -15,14 +15,11 @@ internal class PokemonRepositoryImpl @Inject constructor(
     override suspend fun findAll(page: Int, per: Int): List<Pokemon> {
         return pokedexApi.pokemons(page, per).results.map { it.toDomainModel() }
             .filter { it.number < 10000 }
-            .also { pokemons ->
-                pokemons.forEach {
-                    cache[it.id] = it
-                }
-            }
     }
 
     override suspend fun findById(id: PokemonId): Pokemon {
-        return cache[id] ?: pokedexApi.pokemon(id.value).toDomainModel()
+        return cache[id] ?: pokedexApi.pokemon(id.value).toDomainModel().also {
+            cache[it.id] = it
+        }
     }
 }

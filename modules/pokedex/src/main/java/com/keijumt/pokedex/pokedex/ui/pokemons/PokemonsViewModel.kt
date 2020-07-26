@@ -27,7 +27,7 @@ class PokemonsViewModel @ViewModelInject constructor(
     private val _navigateToPokemon = SingleEventLiveData<String>()
     val navigateToPokemon: LiveData<String> = _navigateToPokemon
 
-    override fun onPokemonClick(pokemonName: String) {
-        _navigateToPokemon.value = pokemonName
+    override fun onPokemonClick(pokemonId: String) {
+        _navigateToPokemon.value = pokemonId
     }
 }

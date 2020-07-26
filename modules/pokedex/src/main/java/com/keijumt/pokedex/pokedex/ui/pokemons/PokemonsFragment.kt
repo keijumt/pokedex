@@ -50,8 +50,8 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
                 }
             }
 
-            pokemonsViewModel.navigateToPokemon.observe(viewLifecycleOwner) { pokemonMame ->
-                val directions = PokemonsFragmentDirections.actionPokemonsToPokemon(pokemonMame)
+            pokemonsViewModel.navigateToPokemon.observe(viewLifecycleOwner) { pokemonId ->
+                val directions = PokemonsFragmentDirections.actionPokemonsToPokemon(pokemonId)
                 navController.navigate(directions)
             }
         }

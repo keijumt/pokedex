@@ -23,7 +23,7 @@
         android:clickable="true"
         android:clipChildren="false"
         android:focusable="true"
-        android:onClick="@{() -> listener.onPokemonClick(pokemon.name)}"
+        android:onClick="@{() -> listener.onPokemonClick(pokemon.id)}"
         app:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
